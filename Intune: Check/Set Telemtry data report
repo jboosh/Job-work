@@ -1,0 +1,22 @@
+$regPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection"
+$telemetry = Get-ItemProperty -Path $regPath -ErrorAction SilentlyContinue
+
+if ($telemetry -and $telemetry.AllowTelemetry -ge 1) {
+    Write-Output "Compliant"
+} else {
+    Write-Output "NonCompliant"
+}
+
+
+
+
+
+#
+$regPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection"
+
+if (!(Test-Path $regPath)) {
+    New-Item -Path $regPath -Force | Out-Null
+}
+
+Set-ItemProperty -Path $regPath -Name "AllowTelemetry" -Value 1 -Type DWord
+Write-Output "Telemetry level set to 1 (Required)"
