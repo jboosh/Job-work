@@ -1,0 +1,3 @@
+Add-ADGroupMember -Identity "What be the name of the Group" -Members "What be the name of the alias", "Is there a 2nd or 3rd alias to add"
+
+Get -ADGroupMember -identity "What is the name of the Group"
